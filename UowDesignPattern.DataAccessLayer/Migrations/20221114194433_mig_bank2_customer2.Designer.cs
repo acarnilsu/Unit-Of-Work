@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UowDesignPattern.DataAccessLayer.Concrete;
 
 namespace UowDesignPattern.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20221114194433_mig_bank2_customer2")]
+    partial class mig_bank2_customer2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,38 +33,6 @@ namespace UowDesignPattern.DataAccessLayer.Migrations
                     b.HasIndex("TeamsTeamID");
 
                     b.ToTable("SponsorTeam");
-                });
-
-            modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.AccountTransaction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Amount")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Customer2ID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ReciverIban")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ReciverName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SendIban")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SendName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Customer2ID");
-
-                    b.ToTable("accountTransactions");
                 });
 
             modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.Bank2", b =>
@@ -192,17 +162,6 @@ namespace UowDesignPattern.DataAccessLayer.Migrations
                         .HasForeignKey("TeamsTeamID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.AccountTransaction", b =>
-                {
-                    b.HasOne("UowDesignPattern.EntityLayer.Concrete.Customer2", "Customer2")
-                        .WithMany()
-                        .HasForeignKey("Customer2ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer2");
                 });
 
             modelBuilder.Entity("UowDesignPattern.EntityLayer.Concrete.Bank2", b =>

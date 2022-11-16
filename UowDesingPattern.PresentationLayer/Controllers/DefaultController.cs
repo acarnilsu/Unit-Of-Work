@@ -6,7 +6,13 @@ namespace UowDesignPattern.PresentationLayer.Controllers
 {
     public class DefaultController : Controller
     {
-        Context context=new Context();
+        private readonly Context context;
+
+        public DefaultController(Context context)
+        {
+            this.context = context;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {

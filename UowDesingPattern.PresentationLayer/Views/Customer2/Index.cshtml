@@ -1,0 +1,42 @@
+﻿@model List<UowDesignPattern.EntityLayer.Concrete.Customer2>
+
+
+@{
+    ViewData["Title"] = "Index";
+    int sayac = 0;
+}
+<br />
+<div>
+    <table class="table table-bordered">
+
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Banka Sayısı</th>
+            <th>İşlem</th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @{
+                    sayac++;
+                }
+                <td>@sayac</td>
+                <td>@item.Name</td>
+                <td>@item.Surname</td>
+                <td>@item.Count</td>
+
+                <td>
+                    <a class="btn btn-success" asp-controller="Customer2" asp-action="Detail" asp-route-id="@item.Customer2ID">İncele</a>
+                </td>
+
+            </tr>
+
+        }
+    </table>
+
+</div>
+
+
+

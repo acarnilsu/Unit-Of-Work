@@ -10,10 +10,12 @@ namespace UowDesignPattern.PresentationLayer.Controllers
     public class CustomerController : Controller
     {
         ICustomerService _customerService;
+        private readonly Context context;
 
-        public CustomerController(ICustomerService customerService)
+        public CustomerController(ICustomerService customerService, Context context)
         {
             _customerService = customerService;
+            this.context = context;
         }
 
         [HttpGet]
@@ -25,7 +27,6 @@ namespace UowDesignPattern.PresentationLayer.Controllers
         [HttpPost]
         public IActionResult SendMoney(ProcessViewModel p)
         {
-            Context context = new Context();
 
             decimal senderCurrentBalance = context.Customers.Where(x => x.CustomerID == p.SenderID).Select(y => y.Balance).FirstOrDefault();
 

@@ -1,0 +1,42 @@
+﻿
+@model List<UowDesignPattern.EntityLayer.Concrete.Bank2>
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>Detail</h1>
+<br />
+<div>
+    <table class="table table-bordered">
+
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Banka İsmi</th>
+            <th>Bakiye</th>
+            <th>Iban</th>
+            <th>İşlem</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Customer2.Name</td>
+                <td>@item.Customer2.Surname</td>
+                <td>@item.Name</td>
+                <td>@item.Balance</td>
+                <td>@item.AccountNumber</td>
+                <td>
+                    <a class="btn btn-success" asp-controller="Customer2" asp-action="SendMoney" asp-route-iban="@item.AccountNumber">Para Gönder</a>
+                    <a class="btn btn-warning" asp-controller="Customer2" asp-action="Transaction" asp-route-id="@item.Customer2ID" asp-route-iban=@item.AccountNumber>Hesap Hareketleri</a>
+
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>
+
+
+
+
